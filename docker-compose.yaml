@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    build: .
+    command: python app
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+
+
